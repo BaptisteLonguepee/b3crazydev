@@ -1,13 +1,37 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './App.css';
+import HomePages from "./pages/HomePage";
 
 function App() {
-    let game: Phaser.Game | undefined;
-    let balloon: Phaser.GameObjects.Sprite | undefined;
-    const MAX_BALLOON_SIZE = 500;
+    const balloonElement = useRef<HTMLDivElement>(null);
+    const explosionSound = useRef<HTMLAudioElement>(null); // Référence pour l'élément audio
+    const [ballonExploded, setBallonExploded] = useState(false); // État pour vérifier si le ballon a explosé ou non
+    const VOLUME_THRESHOLD = 50;
+    const MAX_SIZE = 15;
+    let balloonSize = 1;
 
     useEffect(() => {
-        // Demande d'accès au microphone
+        function inflateBalloon() {
+            balloonSize += 0.05;
+            if (balloonElement.current) {
+                balloonElement.current.style.transform = `scale(${balloonSize})`;
+            }
+
+            if (balloonSize > MAX_SIZE) {
+                explodeBalloon();
+            }
+        }
+
+        function explodeBalloon() {
+            if (balloonElement.current) {
+                balloonElement.current.classList.add('explode');
+                explosionSound.current?.play(); // Jouer le son d'explosion
+                setTimeout(() => {
+                    setBallonExploded(true);
+                }, 500);
+            }
+        }
+
         navigator.mediaDevices.getUserMedia({ audio: true })
             .then(stream => {
                 const audioContext = new AudioContext();
@@ -15,84 +39,38 @@ function App() {
                 const source = audioContext.createMediaStreamSource(stream);
                 source.connect(analyser);
 
-                // Configuration de l'analyseur pour obtenir des données de volume
-                analyser.fftSize = 256;
-                const bufferLength = analyser.frequencyBinCount;
-                const dataArray = new Uint8Array(bufferLength);
+                const dataArray = new Uint8Array(analyser.frequencyBinCount);
 
-                // Boucle pour vérifier le volume
                 function checkVolume() {
                     analyser.getByteFrequencyData(dataArray);
-
-                    // Obtenez le volume moyen
-                    const volume = dataArray.reduce((a, b) => a + b) / bufferLength;
-
-                    // Logique pour gonfler le ballon
-                    const VOLUME_THRESHOLD = 150;
-
-                    if(volume > VOLUME_THRESHOLD) {
+                    let sum = 0;
+                    for (let i = 0; i < dataArray.length; i++) {
+                        sum += dataArray[i];
+                    }
+                    let average = sum / dataArray.length;
+                    if (average > VOLUME_THRESHOLD) {
                         inflateBalloon();
                     }
-
                     requestAnimationFrame(checkVolume);
                 }
 
                 checkVolume();
+
             })
             .catch(error => {
-                console.error('Error accessing microphone: ', error);
+                console.error('Erreur d’accès au micro:', error);
             });
 
-        function inflateBalloon() {
-            // Initialisation de Phaser s'il n'est pas déjà initialisé
-            if (!game) {
-                const config: Phaser.Types.Core.GameConfig = {
-                    type: Phaser.AUTO,
-                    width: 800,
-                    height: 600,
-                    scene: {
-                        preload: preload,
-                        create: create
-                    },
-                    parent: 'phaser-game'  // Ajout du parent pour ancrer le jeu à l'élément div
-                };
-                game = new Phaser.Game(config);
-            }
-
-            // Augmenter la taille du ballon
-            if (balloon) {
-                balloon.setScale(balloon.scaleX + 0.05, balloon.scaleY + 0.05);
-
-                // Vérifier si le ballon doit exploser
-                if (balloon.scaleX * balloon.width >= MAX_BALLOON_SIZE) {
-                    explodeBalloon();
-                }
-            }
-        }
-
-        function preload(this: Phaser.Scene) {
-            this.load.image('balloon', './img/ballon.jpg');
-        }
-
-        function create(this: Phaser.Scene) {
-            balloon = this.add.sprite(400, 300, 'balloon');
-            balloon.setScale(0.1);
-        }
-
-        function explodeBalloon() {
-            balloon?.destroy();
-            // window.location.href = '/';
-        }
-    }, []);
+    }, []);  // Le tableau vide signifie que useEffect ne s'exécute qu'au montage du composant
 
     return (
-        <div className="App">
-            <header className="App-header">
-                <p>React + Phaser Demo with TypeScript</p>
-                <div id="phaser-game" style={{ width: '800px', height: '600px' }}></div>  {/* Ajout de styles pour définir les dimensions */}
-            </header>
+        <div className="container">
+            {ballonExploded ? <HomePages /> : <div className="ballon" ref={balloonElement}></div>}
+            <audio ref={explosionSound} src="/SUIII.mp3" preload="auto"></audio>
+            {/* Assurez-vous de remplacer "path_to_your_explosion_sound.mp3" par le chemin d'accès réel vers votre fichier audio */}
         </div>
     );
+
 }
 
 export default App;
