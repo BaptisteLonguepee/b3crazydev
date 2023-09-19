@@ -4,7 +4,7 @@ import './App.css';
 function App() {
     let game: Phaser.Game | undefined;
     let balloon: Phaser.GameObjects.Sprite | undefined;
-    const MAX_BALLOON_SIZE = 500; // Définissez la taille maximale avant l'explosion
+    const MAX_BALLOON_SIZE = 500;
 
     useEffect(() => {
         // Demande d'accès au microphone
@@ -28,7 +28,7 @@ function App() {
                     const volume = dataArray.reduce((a, b) => a + b) / bufferLength;
 
                     // Logique pour gonfler le ballon
-                    const VOLUME_THRESHOLD = 150; // ajustez cette valeur en fonction de vos besoins
+                    const VOLUME_THRESHOLD = 150;
 
                     if(volume > VOLUME_THRESHOLD) {
                         inflateBalloon();
@@ -53,7 +53,8 @@ function App() {
                     scene: {
                         preload: preload,
                         create: create
-                    }
+                    },
+                    parent: 'phaser-game'  // Ajout du parent pour ancrer le jeu à l'élément div
                 };
                 game = new Phaser.Game(config);
             }
@@ -70,17 +71,16 @@ function App() {
         }
 
         function preload(this: Phaser.Scene) {
-            this.load.image('balloon', './img/ballon.jpg'); // Remplacez par le chemin de votre image de ballon
+            this.load.image('balloon', './img/ballon.jpg');
         }
 
         function create(this: Phaser.Scene) {
             balloon = this.add.sprite(400, 300, 'balloon');
-            balloon.setScale(0.1); // Commencer petit
+            balloon.setScale(0.1);
         }
 
         function explodeBalloon() {
             balloon?.destroy();
-            // Redirigez vers le site principal
             // window.location.href = '/';
         }
     }, []);
@@ -89,7 +89,7 @@ function App() {
         <div className="App">
             <header className="App-header">
                 <p>React + Phaser Demo with TypeScript</p>
-                <div id="phaser-game"></div>
+                <div id="phaser-game" style={{ width: '800px', height: '600px' }}></div>  {/* Ajout de styles pour définir les dimensions */}
             </header>
         </div>
     );
