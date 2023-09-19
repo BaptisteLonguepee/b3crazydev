@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './App.css';
-import HomePages from "./pages/HomePage";
+import HomePages from "./pages/HomePage/HomePage";
 
 function App() {
     const balloonElement = useRef<HTMLDivElement>(null);
