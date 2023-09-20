@@ -32,3 +32,42 @@
 .answerButton:active {
     transform: scale(0.95);
 }
+
+/* Styles pour l'affichage des résultats sur la carte FIFA */
+
+.resultContainer {
+    position: relative;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.fifaCardImage {
+    width: 100%; /* ou la taille que vous préférez */
+}
+
+.score, .totalScore {
+    position: absolute;
+    color: white;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Exemple de positionnement des scores, à ajuster selon votre image */
+.score-0 {
+    top: 20%;
+    left: 10%;
+}
+
+.score-1 {
+    top: 30%;
+    left: 10%;
+}
+
+/* Et ainsi de suite pour chaque score... */
+
+.totalScore {
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2rem;
+}

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "./Quiz.css"; // Importez un fichier CSS pour le style
+import "./Quiz.css";
 
-const EMOJIS = ["🚗", "🏀", "📺", "🕺", "🍕", "📚"]; // Un émoji pour chaque question
+const EMOJIS = ["🚗", "🏀", "📺", "🕺", "🍕", "📚"];
 
 const QUIZ_DATA = [
     {
@@ -60,22 +60,30 @@ const QUIZ_DATA = [
     }
 ];
 
-
 function Quiz() {
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-    const [score, setScore] = useState(0);
+    const [scores, setScores] = useState<number[]>([]);
     const currentQuestion = QUIZ_DATA[currentQuestionIndex];
 
     const handleAnswerClick = (answerScore: number) => {
-        setScore(score + answerScore);
+        setScores([...scores, answerScore]);
         const nextQuestionIndex = currentQuestionIndex + 1;
-
-        if (nextQuestionIndex < QUIZ_DATA.length) {
-            setCurrentQuestionIndex(nextQuestionIndex);
-        } else {
-            alert(`🎉 Quiz terminé! Votre score total est: ${score + answerScore} 🌟`);
-        }
+        setCurrentQuestionIndex(nextQuestionIndex);
     };
+
+    const totalScore = scores.reduce((acc, curr) => acc + curr, 0);
+
+    if (currentQuestionIndex === QUIZ_DATA.length) {
+        return (
+            <div className="resultContainer">
+                <img src="/carte.webp" alt="FIFA Card" className="fifaCardImage"/>
+                {scores.map((score, index) => (
+                    <div key={index} className={`score score-${index}`}>{score}</div>
+                ))}
+                <div className="totalScore">{totalScore}</div>
+            </div>
+        );
+    }
 
     return (
         <div className="quizContainer">
