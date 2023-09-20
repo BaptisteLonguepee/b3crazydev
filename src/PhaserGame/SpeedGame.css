@@ -1,0 +1,22 @@
+.gameContainer {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.movingCar {
+    position: absolute;
+    bottom: 10%;
+    animation: moveCar 5s linear infinite;
+    width: 100px; /* À ajuster selon la taille de votre image */
+}
+
+@keyframes moveCar {
+    0% {
+        left: -110%;
+    }
+    100% {
+        left: 110%;
+    }
+}

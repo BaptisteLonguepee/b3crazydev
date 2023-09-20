@@ -1,5 +1,8 @@
 import './HomePage.css';
+import SpeedGame from "../../PhaserGame/SpeedGame";
+import Quiz from "../Quizz/Quiz";
 import React from 'react';
+
 
 const HomePage: React.FC = () => {
     return (
