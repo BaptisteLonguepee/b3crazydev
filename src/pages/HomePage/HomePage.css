@@ -1,3 +1,4 @@
+
 .home-container {
     background-image: url('../../../public/fond.jpg');
     background-size: cover;
@@ -6,16 +7,18 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-top: 30px;
+    margin-bottom: 60px;
 }
 
 .banner {
     text-align: center;
     overflow: hidden;
-    border-radius: 15px;
+    border-radius: 50px;
     width: 100%;
     position: relative;
+    margin-bottom: 50px;
 }
-
 .banner::before {
     content: "";
     position: absolute;
@@ -23,11 +26,14 @@
     right: 0;
     bottom: 0;
     left: 0;
-    background: radial-gradient(
-            ellipse at center,
-            rgba(51, 85, 90, 0.5) 0%,
-            transparent 75%
-    );
+    background-image:
+            linear-gradient(to top, transparent, #07131f),
+            linear-gradient(to bottom, transparent, #07131f),
+            linear-gradient(to left, transparent, #07131f),
+            linear-gradient(to right, transparent, #07131f);
+    background-size: 100% 200px, 100% 200px, 300px 100%, 300px 100%;
+    background-repeat: no-repeat;
+    background-position: top, bottom, left, right;
     mix-blend-mode: multiply;
     pointer-events: none;
     z-index: 1;
@@ -36,36 +42,254 @@
 .banner-image {
     width: 100%;
     height: auto;
-    filter: blur(0.5px);
+    display: block;
+    margin: 0 auto;
 }
 
+
+.fade-in-text {
+    opacity: 0; /* Initialisé à 0 pour l'effet de fondu */
+    animation: fadeInOpacity 2s forwards; /* Utilisez la même animation que celle que vous aviez */
+}
 .banner-text {
     position: absolute;
     top: 10%;
     left: 50%;
     transform: translate(-50%, -50%);
     color: darkseagreen;
-    font-size: 30px;
+    font-size: 60px;
     font-weight: bold;
-    background-color: rgba(0, 0, 0, 0.0);
-    padding: 20px 30px;
-    border-radius: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px 40px; /* Ajustement du padding */
+    border-radius: 25px; /* Bordures arrondies plus prononcées */
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4); /* Ombre du texte ajustée */
+    z-index: 2;
 }
+
+
+
+/* Effet de survol pour le texte de la bannière */
+.banner-text:hover {
+    transform: translate(-50%, -50%) scale(1.05); /* Agrandir légèrement */
+}
+
+/* Animation de fondu et d'échelle pour le texte de la bannière */
+@keyframes bannerTextFadeScaleIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(0.9);
+    }
+}
+
+/* Application de l'animation au texte de la bannière lors du chargement de la page */
+.home-container.fade-in .banner-text {
+    animation: bannerTextFadeScaleIn 1s forwards;
+}
+
+
+.quiz-button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
 .quiz-button {
-    font-size: 20px;
-    padding: 10px 25px;
-    border-radius: 30px;
-    border: none;
+    font-size: 26px; /* Augmentation de la taille de la police */
+    padding: 20px 40px; /* Ajustement du padding pour un bouton plus grand */
+    border-radius: 50px; /* Bordures très arrondies pour un look moderne */
+    border: 2px solid #61dafb; /* Bordure pour définir le bouton */
     cursor: pointer;
-    transition: 0.3s;
-    background-color: #282c34;  /* Couleur de fond */
-    color: #61dafb;  /* Couleur du texte */
-    margin-top: 20px;  /* Espacement avec la bannière */
+    background-color: #282c34; /* Couleur d'arrière-plan */
+    color: #61dafb; /* Couleur du texte */
+    transition: transform 0.3s, box-shadow 0.3s; /* Effets de transition pour le survol */
+    position: relative; /* Pour le z-index */
+    z-index: 2; /* Assure que le bouton est au-dessus des autres éléments */
+    overflow: hidden; /* Nécessaire pour certains effets de survol */
 }
 
 .quiz-button:hover {
-    background-color: #61dafb;  /* Couleur de fond au survol */
-    color: #282c34;  /* Couleur du texte au survol */
+    transform: scale(1.05); /* Effet de zoom lors du survol */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Ombre portée pour donner une sensation de "lévitation" */
+}
+
+/* Ajout d'un effet de gradient subtil lors du survol */
+.quiz-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, #61dafb, transparent);
+    transform: translateY(-100%);
+    transition: transform 0.5s;
+    z-index: -1;
+}
+
+.quiz-button:hover::before {
+    transform: translateY(0);
+}
+
+.fade-in {
+    -webkit-animation-name: fadeInOpacity;
+    animation-name: fadeInOpacity;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+    -webkit-animation-duration: 2s;
+    animation-duration: 2s;
+}
+
+@-webkit-keyframes fadeInOpacity {
+    0% {
+        opacity: 0.2;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInOpacity {
+    0% {
+        opacity: 0.2;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+/* Pour l'effet de parallaxe */
+.home-container {
+    perspective: 1px;
+    transform-style: preserve-3d;
+    height: 150vh; /* Ajustez en fonction de votre contenu */
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+/* Fond avec effet de parallaxe */
+.home-container::before {
+    content: "";
+    background-image: url('../../../public/fond.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    transform: translateZ(-1px) scale(2);
+}
+
+/* Description du quiz */
+.description {
+    text-align: center;
+    font-size: 20px;
+    margin: 20px 0;
+    padding: 10px;
+    background-color: transparent;
+    border-radius: 15px;
+    width: 80%;
+    z-index: 1;
+    color: #61dafb;
+}
+
+.ronaldo-gif-container {
+    position: relative;
+    max-width: 400px;
+    margin: 30px 0;
+}
+
+.ronaldo-gif {
+    width: 100%;
+    display: block;
+    border-radius: 20px;
+    position: relative; /* Ajout de cette ligne */
+    z-index: 1; /* Ajout de cette ligne */
+}
+
+.ronaldo-speech-bubble {
+    position: absolute;
+    bottom: 98%; /* Changez 'top' par 'bottom' et ajustez la valeur en fonction de la position souhaitée */
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 250px;
+    background-color: white;
+    padding: 10px 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: 16px;
+    text-align: center;
+    z-index: 2; /* Assure que le texte est au-dessus de l'image */
+}
+
+
+.ronaldo-speech-bubble::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 15px solid white;
+}
+.content-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 40px 0;
+    padding: 0 20px;
+}
+
+.left-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Placer le bouton vers le côté droit du conteneur gauche */
+}
+
+.right-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Placer le gif et la bulle de parole vers le côté gauche du conteneur droit */
+    position: relative;
+}
+/* Animation de rebond */
+@keyframes bounceOutLeft {
+    20% {
+        transform: translate3d(20px, 0, 0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate3d(-2000px, 0, 0);
+    }
+}
+
+.bounce-out-left-animation {
+    animation-name: bounceOutLeft;
+    animation-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190);
+    animation-duration: 0.7s;
+}
+
+
+/* Styles pour le footer */
+footer {
+    margin-top: auto;
+    padding: 20px;
+    background-color: transparent;
+    color: #61dafb;
+    font-size: 16px;
+    text-align: center;
+    width: 100%;
 }

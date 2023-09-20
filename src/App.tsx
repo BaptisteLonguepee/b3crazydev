@@ -16,7 +16,6 @@ function App() {
     const VOLUME_THRESHOLD = 50;
     const MAX_SIZE = 15;
     let balloonSize = 1;
-
     useEffect(() => {
         function inflateBalloon() {
             balloonSize += 0.05;
@@ -74,7 +73,6 @@ function App() {
             }, 500);
         }
     }
-
     return (
         <Router>
             {ballonExploded ? (
@@ -92,5 +90,4 @@ function App() {
         </Router>
     );
 }
-
 export default App;
