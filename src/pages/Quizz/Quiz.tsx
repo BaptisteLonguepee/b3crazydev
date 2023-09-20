@@ -75,27 +75,32 @@ function Quiz() {
 
     if (currentQuestionIndex === QUIZ_DATA.length) {
         return (
-            <div className="resultContainer">
-                <img src="/carte.webp" alt="FIFA Card" className="fifaCardImage"/>
-                {scores.map((score, index) => (
-                    <div key={index} className={`score score-${index}`}>{score}</div>
-                ))}
-                <div className="totalScore">{totalScore}</div>
+            <div className="resultContainerFlex">
+                <div className="resultContainer">
+                    <img src="/carte.webp" alt="FIFA Card" className="fifaCardImage"/>
+                    {scores.map((score, index) => (
+                        <div key={index} className={`score score-${index}`}>{score}</div>
+                    ))}
+                    <div className="totalScore">{Math.floor(totalScore/6)}</div>
+                </div>
             </div>
         );
     }
 
     return (
-        <div className="quizContainer">
-            <h2 className="emojiHeader">{EMOJIS[currentQuestionIndex]}</h2>
-            <h3>{currentQuestion.category}</h3>
-            <p>{currentQuestion.question}</p>
-            {currentQuestion.answers.map((answer, index) => (
-                <button className="answerButton" key={index} onClick={() => handleAnswerClick(answer.score)}>
-                    {answer.text}
-                </button>
-            ))}
+        <div className="quizContainerFlex">
+            <div className="quizContainer">
+                <h2 className="emojiHeader">{EMOJIS[currentQuestionIndex]}</h2>
+                <h3>{currentQuestion.category}</h3>
+                <p>{currentQuestion.question}</p>
+                {currentQuestion.answers.map((answer, index) => (
+                    <button className="answerButton" key={index} onClick={() => handleAnswerClick(answer.score)}>
+                        {answer.text}
+                    </button>
+                ))}
+            </div>
         </div>
+
     );
 }
 
