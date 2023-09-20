@@ -2,6 +2,8 @@ import './HomePage.css';
 import SpeedGame from "../../PhaserGame/SpeedGame";
 import Quiz from "../Quizz/Quiz";
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 
 
 const HomePage: React.FC = () => {
@@ -13,8 +15,15 @@ const HomePage: React.FC = () => {
                     Footix Quiz
                 </div>
             </div>
+            <Link to="../Quizz/Quiz">
+                <button className="quiz-button">
+                    Commencer le Quiz
+                </button>
+            </Link>
             {/* Autres éléments de la page d'accueil ici */}
         </div>
+
+
     );
 }
 

@@ -53,3 +53,19 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
 }
+.quiz-button {
+    font-size: 20px;
+    padding: 10px 25px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+    background-color: #282c34;  /* Couleur de fond */
+    color: #61dafb;  /* Couleur du texte */
+    margin-top: 20px;  /* Espacement avec la bannière */
+}
+
+.quiz-button:hover {
+    background-color: #61dafb;  /* Couleur de fond au survol */
+    color: #282c34;  /* Couleur du texte au survol */
+}
