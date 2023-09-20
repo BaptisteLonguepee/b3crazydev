@@ -109,3 +109,10 @@
     color: #402a18;
     font-weight: 600;
 }
+
+.PessiCardImage {
+    position: absolute;
+    width: 50%;
+    top: 16%;
+    left: 42%;
+}
