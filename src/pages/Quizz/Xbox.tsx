@@ -55,7 +55,7 @@ function Xbox() {
                         </div>
                     </div>
                     <div className="banner-outer">
-                        <div className="banner">
+                        <div className="bannerXbox">
                             <div className="achieve_disp">
                                 <span className="unlocked">Achievement unlocked</span>
                                 <div className="score_disp">
