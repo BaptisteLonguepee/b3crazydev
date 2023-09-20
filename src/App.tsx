@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './App.css';
 import HomePages from "./pages/HomePage/HomePage";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Quizz from "./pages/Quizz/Quiz";
 
 function App() {
     const balloonElement = useRef<HTMLDivElement>(null);
@@ -70,9 +72,12 @@ function App() {
     }
 
     return (
-        <>
+        <Router>
             {ballonExploded ? (
-                <HomePages />
+                <Routes>
+                    <Route path="/" element={<HomePages />} />
+                    <Route path="/quizz" element={<Quizz />} />
+                </Routes>
             ) : (
                 <div className="container">
                     <div className="ballon" ref={balloonElement}></div>
@@ -80,10 +85,8 @@ function App() {
             )}
             <audio ref={explosionBallon} src="/BallonPop.mp3" preload="auto"></audio>
             <audio ref={explosionSound} src="/SUIII.mp3" preload="auto"></audio>
-        </>
+        </Router>
     );
-
-
 }
 
 export default App;
