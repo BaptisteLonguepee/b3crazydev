@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./Quiz.css";
+import { TestParticles } from "./TestParticles";
+import Xbox from "./Xbox";
 
 const EMOJIS = ["🚗", "🏀", "📺", "🕺", "🍕", "📚"];
 
@@ -76,8 +78,13 @@ function Quiz() {
     if (currentQuestionIndex === QUIZ_DATA.length) {
         return (
             <div className="resultContainerFlex">
+                <TestParticles />
+                <Xbox/>
                 <div className="resultContainer">
-                    <img src="/carte.webp" alt="FIFA Card" className="fifaCardImage"/>
+                    <img src="/carte.png" alt="FIFA Card" className="fifaCardImage"/>
+                    <div>
+                        <img src="/Pessi-lionel-messi-removebg-preview.png" alt="Pessi Card" className="PessiCardImage"/>
+                    </div>
                     {scores.map((score, index) => (
                         <div key={index} className={`score score-${index}`}>{score}</div>
                     ))}

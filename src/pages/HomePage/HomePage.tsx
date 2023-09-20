@@ -7,12 +7,11 @@ const HomePage: React.FC = () => {
 
     const handleQuizStart = () => {
         const homeContainer = document.querySelector('.home-container');
-        homeContainer?.classList.add('bounce-out-left-animation');
+        homeContainer?.classList.add('bounce-out-right-animation');
         setTimeout(() => {
             navigate("/quizz");
         }, 700); // redirige vers le quiz après 0.7 secondes
     }
-
 
     return (
         <div className="home-container">
