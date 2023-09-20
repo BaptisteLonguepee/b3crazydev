@@ -70,11 +70,17 @@ function App() {
     }
 
     return (
-        <div className="container">
-            {ballonExploded ? <HomePages /> : <div className="ballon" ref={balloonElement}></div>}
+        <>
+            {ballonExploded ? (
+                <HomePages />
+            ) : (
+                <div className="container">
+                    <div className="ballon" ref={balloonElement}></div>
+                </div>
+            )}
             <audio ref={explosionBallon} src="/BallonPop.mp3" preload="auto"></audio>
             <audio ref={explosionSound} src="/SUIII.mp3" preload="auto"></audio>
-        </div>
+        </>
     );
 
 }
