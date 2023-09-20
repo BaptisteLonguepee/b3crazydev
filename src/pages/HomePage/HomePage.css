@@ -1,14 +1,21 @@
-.container {
-    background-color: #33555A;
+.home-container {
+    background-image: url('../../../public/fond.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
     height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .banner {
-    position: relative;
     text-align: center;
     overflow: hidden;
-    border-radius: 15px; /* Ajout de coins arrondis à la bannière */
+    border-radius: 15px;
+    width: 100%;
+    position: relative;
 }
+
 .banner::before {
     content: "";
     position: absolute;
@@ -16,19 +23,21 @@
     right: 0;
     bottom: 0;
     left: 0;
-    background: radial-gradient(circle at center, transparent, #33555A);
-    mix-blend-mode: multiply; /* Combinez le pseudo-élément avec l'image pour créer l'effet de fondu */
-    pointer-events: none; /* Assurez-vous que le pseudo-élément ne gêne pas les interactions utilisateur */
-    z-index: 1; /* Placez le pseudo-élément au-dessus de l'image mais sous le texte */
+    background: radial-gradient(
+            ellipse at center,
+            rgba(51, 85, 90, 0.5) 0%,
+            transparent 75%
+    );
+    mix-blend-mode: multiply;
+    pointer-events: none;
+    z-index: 1;
 }
-
 
 .banner-image {
     width: 100%;
     height: auto;
-    filter: blur(1px); /* Ajouter un effet de flou à l'image */
+    filter: blur(0.5px);
 }
-
 
 .banner-text {
     position: absolute;
@@ -36,11 +45,11 @@
     left: 50%;
     transform: translate(-50%, -50%);
     color: darkseagreen;
-    font-size: 30px; /* Augmenter la taille de la police */
+    font-size: 30px;
     font-weight: bold;
-    background-color: rgba(0, 0, 0, 0.0); /* Rendre l'arrière-plan un peu plus opaque */
-    padding: 20px 30px; /* Augmenter le padding */
-    border-radius: 15px; /* Augmenter légèrement le rayon de la bordure */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ajouter une ombre pour un effet de levée */
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2); /* Ombre portée pour le texte */
+    background-color: rgba(0, 0, 0, 0.0);
+    padding: 20px 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
 }

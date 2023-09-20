@@ -6,7 +6,7 @@ import React from 'react';
 
 const HomePage: React.FC = () => {
     return (
-        <div className="container">
+        <div className="home-container">
             <div className="banner">
                 <img src="/banner2.png" alt="Bannière" className="banner-image"/>
                 <div className="banner-text">
@@ -17,5 +17,6 @@ const HomePage: React.FC = () => {
         </div>
     );
 }
+
 
 export default HomePage;

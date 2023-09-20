@@ -1,3 +1,12 @@
+/* Réinitialise les marges et les rembourrages pour le corps et l'élément html */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+/* Vos autres styles restent inchangés */
 .App {
   text-align: center;
 }
@@ -37,21 +46,30 @@
   }
 }
 
+/* Mettez background-size à 'cover' pour que l'image prenne toute la page */
 .container {
+  background-image: url('../public/terrain.png');
+  background-size: cover; /* De contain à cover */
+  background-repeat: no-repeat;
+  background-position: center;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   width: 100vw;
+  margin: 0;
+  padding: 0;
 }
+
 .ballon {
   background: url(http://upload.wikimedia.org/wikipedia/en/e/ec/Soccer_ball.svg);
   background-size: 100px 100px;
   height: 100px;
   width: 100px;
   position: relative;
+  left: 10px;
+  bottom: 2px;
 }
-
 
 /* Animation d'explosion */
 @keyframes explodeAnimation {
@@ -70,5 +88,5 @@
 }
 
 .explode {
-  animation: explodeAnimation 0.5s forwards; /* 'forwards' garde l'état final de l'animation */
+  animation: explodeAnimation 0.5s forwards;
 }
