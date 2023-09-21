@@ -15,6 +15,28 @@
     overflow-y: scroll;
     overflow-x: hidden;
 }
+/* === HOME BUTTON STYLES === */
+.home-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #07131f;
+    color: #61dafb;
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s;
+    z-index: 999; /* pour s'assurer qu'il apparaît au-dessus des autres éléments */
+}
+
+.home-button:hover {
+    background-color: #61dafb;
+    color: #07131f;
+}
+
 
 .home-container::before {
     content: "";
@@ -264,7 +286,7 @@
 /* === FOOTER STYLES === */
 footer {
     background-color: transparent;
-    color: #FFF;
+    color: #61dafb;
     padding: 20px 0;
 }
 
@@ -281,6 +303,8 @@ footer {
     display: flex;
     gap: 10px;
     align-items: center;
+    color: #61dafb;
+
 }
 
 .creators a {
@@ -288,7 +312,6 @@ footer {
     gap: 5px;
     align-items: center;
     text-decoration: none;
-    color: #FFF;
 }
 
 .creators img {

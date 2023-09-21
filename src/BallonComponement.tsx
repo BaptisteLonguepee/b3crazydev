@@ -1,11 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
+import './App.css';
 
 const MAX_SIZE = 15;
 const VOLUME_THRESHOLD = 50;
 
-const BalloonComponent: React.FC = () => {
+const BalloonComponent: React.FC<{ explodeAndNavigate: () => void }> = ({ explodeAndNavigate }) => {
     const balloonElement = useRef<HTMLDivElement>(null);
     const [balloonSize, setBalloonSize] = useState(1);
+    const [shouldExplode, setShouldExplode] = useState(false);
 
     useEffect(() => {
         let cancelAnimationFrameId: number;
@@ -14,7 +16,7 @@ const BalloonComponent: React.FC = () => {
             setBalloonSize(prevSize => {
                 const newSize = prevSize + 0.05;
                 if (newSize > MAX_SIZE) {
-                    explodeBalloon();
+                    setShouldExplode(true);
                 }
                 return newSize;
             });
@@ -54,21 +56,24 @@ const BalloonComponent: React.FC = () => {
     }, []);
 
     useEffect(() => {
+        if (shouldExplode) {
+            explodeAndNavigate();
+        }
+    }, [shouldExplode, explodeAndNavigate]);
+
+    useEffect(() => {
         if (balloonElement.current) {
             balloonElement.current.style.transform = `scale(${balloonSize})`;
         }
     }, [balloonSize]);
 
-    function explodeBalloon() {
-        if (balloonElement.current) {
-            balloonElement.current.classList.add('explode');
-            // Vous pouvez aussi ajouter la logique pour jouer le son d'explosion ici.
-        }
-    }
-
     return (
         <div className="container">
+            <div className="instruction">Soufflez pour faire exploser le ballon 🎈</div>
             <div className="balloon" ref={balloonElement}></div>
+            <button className="styled-button" onClick={() => setShouldExplode(true)}>
+                Asthmatique ? Clique ici
+            </button>
         </div>
     );
 };

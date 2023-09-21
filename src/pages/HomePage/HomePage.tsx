@@ -17,6 +17,10 @@ const HomePage: React.FC = () => {
         }, 700); // redirige vers le quiz après 0.7 secondes
     }
 
+    const handleNavigateToQuizzGame = () => {
+        navigate("/quizzGame");
+    }
+
     return (
         <div className="home-container">
 
@@ -50,11 +54,14 @@ const HomePage: React.FC = () => {
             <div className="confrontation-section">
                 <div className="confrontation-message">Prouvez votre génie footbalistique ! ⚽️ Défiez vos amis dès maintenant.</div>
                 <div className="confrontation-buttons">
-                    <button className="confrontation-button">Créer un salon</button>
-                    <button className="confrontation-button">Rejoindre un salon</button>
+                    <button className="confrontation-button" onClick={handleNavigateToQuizzGame}>
+                        Créer un salon
+                    </button>
+                    <button className="confrontation-button" onClick={handleNavigateToQuizzGame}>
+                        Rejoindre un salon
+                    </button>
                 </div>
             </div>
-
             {/* Footer */}
             <footer>
                 <div className="footer-content">
@@ -62,11 +69,11 @@ const HomePage: React.FC = () => {
                         <span>Créateurs :</span>
                         <a href="https://www.linkedin.com/in/baptiste-longuepee-6953a4207/" target="_blank" rel="noopener noreferrer">
                             <img src="/linkedin-icon.png" alt="LinkedIn de Creator1" className="linkedin-icon" />
-                            Creator1
+                            Baptiste
                         </a>
                         <a href="https://www.linkedin.com/in/vianney-basquin-173358220/" target="_blank" rel="noopener noreferrer">
                             <img src="/linkedin-icon.png" alt="LinkedIn de Creator2" className="linkedin-icon" />
-                            Creator2
+                            Vianney
                         </a>
                     </div>
                 </div>
@@ -74,8 +81,11 @@ const HomePage: React.FC = () => {
                     © 2023 Footix Quiz. Tous droits réservés.
                 </div>
             </footer>
+
         </div>
+
     );
+
 }
 
 export default HomePage;

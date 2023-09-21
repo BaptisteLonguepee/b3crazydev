@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-import HomePages from "./pages/HomePage/HomePage";
+import HomePage from "./pages/HomePage/HomePage";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Quizz from "./pages/Quizz/Quiz";
 import QuizzGame from "./pages/QuizzGame/QuizzGame";
@@ -12,18 +12,22 @@ function App() {
 
     const [balloonExploded, setBalloonExploded] = useState(() => {
         if (localStorage.getItem('balloonExploded') === 'true') {
-            if (minutesSinceLastExploded > 1) {
-                return false;
-            }
-            return true;
+            return minutesSinceLastExploded <= 1;
+
         }
         return false;
     });
 
+    const explodeAndNavigate = () => {
+        setBalloonExploded(true);
+        localStorage.setItem('balloonExploded', 'true');
+        localStorage.setItem('lastExplodedDate', new Date().toISOString());
+    };
+
     return (
         <Router>
             <Routes>
-                <Route path="/" element={balloonExploded ? <HomePages /> : <BalloonComponent />} />
+                <Route path="/" element={balloonExploded ? <HomePage /> : <BalloonComponent explodeAndNavigate={explodeAndNavigate} />} />
                 <Route path="/quizz" element={<Quizz />} />
                 <Route path="/quizzGame" element={<QuizzGame />} />
             </Routes>
