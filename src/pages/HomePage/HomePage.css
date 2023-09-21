@@ -1,5 +1,4 @@
 /* === GLOBAL STYLES === */
-
 .home-container {
     background-image: url('../../../public/fond.jpg');
     background-size: cover;
@@ -32,7 +31,6 @@
 }
 
 /* === BANNER STYLES === */
-
 .banner {
     text-align: center;
     overflow: hidden;
@@ -40,26 +38,6 @@
     width: 100%;
     position: relative;
     margin-bottom: 50px;
-}
-
-.banner::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-image:
-            linear-gradient(to top, transparent, #07131f),
-            linear-gradient(to bottom, transparent, #07131f),
-            linear-gradient(to left, transparent, #07131f),
-            linear-gradient(to right, transparent, #07131f);
-    background-size: 100% 200px, 100% 200px, 300px 100%, 300px 100%;
-    background-repeat: no-repeat;
-    background-position: top, bottom, left, right;
-    mix-blend-mode: multiply;
-    pointer-events: none;
-    z-index: 1;
 }
 
 .banner-image {
@@ -87,8 +65,27 @@
     transform: translate(-50%, -50%) scale(1.05);
 }
 
-/* === QUIZ BUTTON STYLES === */
+.banner::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image:
+            linear-gradient(to top, transparent, #07131f),
+            linear-gradient(to bottom, transparent, #07131f),
+            linear-gradient(to left, transparent, #07131f),
+            linear-gradient(to right, transparent, #07131f);
+    background-size: 100% 200px, 100% 200px, 300px 100%, 300px 100%;
+    background-repeat: no-repeat;
+    background-position: top, bottom, left, right;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+    z-index: 1;
+}
 
+/* === BUTTON STYLES === */
 .quiz-button-container {
     display: flex;
     align-items: center;
@@ -97,7 +94,7 @@
     margin-top: 20px;
 }
 
-.quiz-button {
+.quiz-button, .confrontation-button {
     font-size: 26px;
     padding: 20px 40px;
     border-radius: 50px;
@@ -111,9 +108,26 @@
     overflow: hidden;
 }
 
-.quiz-button:hover {
-    transform: scale(1.05);
+.confrontation-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.confrontation-message {
+    font-size: 24px;
+    color: #61dafb;
+    margin-bottom: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
+    text-align: center;
+}
+
+
+.quiz-button:hover, .confrontation-button:hover {
+    background-color: #61dafb;
+    color: #07131f;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
 }
 
 .quiz-button::before {
@@ -129,12 +143,7 @@
     z-index: -1;
 }
 
-.quiz-button:hover::before {
-    transform: translateY(0);
-}
-
-/* === DESCRIPTION & CONTENT STYLES === */
-
+/* === CONTENT & DESCRIPTION STYLES === */
 .description {
     text-align: center;
     font-size: 20px;
@@ -157,23 +166,22 @@
     padding: 0 20px;
 }
 
-.left-content {
+.left-content, .right-content {
     flex: 1;
     display: flex;
     align-items: center;
+}
+
+.left-content {
     justify-content: flex-end;
 }
 
 .right-content {
-    flex: 1;
-    display: flex;
-    align-items: center;
     justify-content: flex-start;
     position: relative;
 }
 
 /* === RONALDO GIF STYLES === */
-
 .ronaldo-gif-container {
     position: relative;
     max-width: 400px;
@@ -201,6 +209,7 @@
     font-size: 16px;
     text-align: center;
     z-index: 2;
+    color: black;
 }
 
 .ronaldo-speech-bubble::after {
@@ -214,22 +223,15 @@
     border-top: 15px solid white;
 }
 
-/* === ANIMATIONS === */
-
+/* === ANIMATION STYLES === */
 .fade-in-text {
     opacity: 0;
     animation: fadeInOpacity 2s forwards;
 }
 
 @keyframes bannerTextFadeScaleIn {
-    from {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(0.8);
-    }
-    to {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(0.9);
-    }
+    from { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+    to { opacity: 1; transform: translate(-50%, -50%) scale(0.9); }
 }
 
 .home-container.fade-in .banner-text {
@@ -237,13 +239,8 @@
 }
 
 @keyframes bounceOutLeft {
-    20% {
-        transform: translate3d(20px, 0, 0);
-    }
-    100% {
-        opacity: 0;
-        transform: translate3d(-2000px, 0, 0);
-    }
+    20% { transform: translate3d(20px, 0, 0); }
+    100% { opacity: 0; transform: translate3d(-2000px, 0, 0); }
 }
 
 .bounce-out-left-animation {
@@ -265,13 +262,50 @@
 }
 
 /* === FOOTER STYLES === */
-
 footer {
-    margin-top: auto;
-    padding: 20px;
     background-color: transparent;
-    color: #61dafb;
-    font-size: 16px;
+    color: #FFF;
+    padding: 20px 0;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin-top: 50px;
+    padding: 0 20px;
+}
+
+.creators {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.creators a {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    text-decoration: none;
+    color: #FFF;
+}
+
+.creators img {
+    width: 20px;
+    height: 20px;
+}
+
+.footer-bottom {
     text-align: center;
-    width: 100%;
+    margin-top: 20px;
+}
+
+a {
+    color: #61dafb;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }

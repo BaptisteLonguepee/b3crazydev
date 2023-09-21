@@ -95,9 +95,10 @@ function Quiz() {
                 <Xbox/>
                 <div className="resultContainer">
                     <img src="/carte.png" alt="FIFA Card" className="fifaCardImage"/>
-                    <div className="playerName">{playerName}</div>
-                    <div className="playerNationality">{nationality}</div>
-                    <div className="playerRole">{role}</div>
+                    <div className="playerName dark-text">{playerName}</div>
+                    <div className="playerNationality dark-text">{nationality}</div>
+                    <div className="playerRole dark-text">{role}</div>
+
 
                     <div>
                         <img src="/Pessi-lionel-messi-removebg-preview.png" alt="Pessi Card" className="PessiCardImage"/>
@@ -121,12 +122,23 @@ function Quiz() {
                 />
                 <select value={nationality} onChange={(e) => setNationality(e.target.value)}>
                     <option value="FR">🇫🇷 France</option>
-                    // Ajoutez d'autres pays comme vous le souhaitez ici
+                    <option value="BE">🇧🇪 Belgique</option>
+                    <option value="DE">🇩🇪 Allemagne</option>
+                    <option value="CH">🇨🇭 Suisse</option>
+                    <option value="IT">🇮🇹 Italie</option>
+                    <option value="LU">🇱🇺 Luxembourg</option>
+                    <option value="ES">🇪🇸 Espagne</option>
+                    <option value="MC">🇲🇨 Monaco</option>
+
                 </select>
                 <select value={role} onChange={(e) => setRole(e.target.value)}>
-                    <option value="AT">AT</option>
-                    <option value="DD">DD</option>
-                    // Ajoutez d'autres rôles comme vous le souhaitez ici
+                    <option value="AT">AT - Attaquant</option>
+                    <option value="MD">MD - Milieu de terrain</option>
+                    <option value="DD">DD - Défenseur Droit</option>
+                    <option value="DG">DG - Défenseur Gauche</option>
+                    <option value="DC">DC - Défenseur Central</option>
+                    <option value="GB">GB - Gardien de but</option>
+
                 </select>
                 <button onClick={startQuiz}>Commencer le quiz</button>
             </div>

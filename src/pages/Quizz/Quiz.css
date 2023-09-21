@@ -1,30 +1,59 @@
-.quizContainerFlex {
+/* === GLOBAL STYLES === */
+body {
+    font-family: 'Arial', sans-serif;
+    background-image: url('../../../public/fond.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    color: #EDEDED;
+}
+
+/* === FORM STYLES === */
+.playerInputContainer {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background-color: rgba(10, 20, 50, 0.8);
+    gap: 20px;
 }
 
-.quizContainer {
-    background-color: #FFDDC1;
-    padding: 20px;
-    border-radius: 15px;
-    max-width: 400px;
-    margin: 0 auto;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+input, select {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #EDEDED;
+    border: 1px solid #FFDDC1;
+    margin: 10px 0;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 300px;
 }
 
-.emojiHeader {
-    font-size: 4rem;
-    text-align: center;
-    margin-bottom: 20px;
+.dark-text {
+    color: black;
+}
+
+/* === BUTTON STYLES === */
+button {
+    padding: 12px 25px;
+    background-color: #4a74a5;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #6589bf;
 }
 
 .answerButton {
     display: block;
     margin: 10px 0;
     padding: 10px 20px;
-    background-color: #FF6584;
+    background-color: #4a74a5;
     color: white;
     border: none;
     border-radius: 30px;
@@ -33,82 +62,82 @@
 
 .answerButton:hover {
     transform: scale(1.05);
-    background-color: #FF3365;
+    background-color: #6589bf;
 }
 
 .answerButton:active {
     transform: scale(0.95);
 }
 
-
-
-/* Styles pour l'affichage des résultats sur la carte FIFA */
-.resultContainerFlex{
+/* === QUIZ STYLES === */
+.quizContainerFlex {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
+
+.quizContainer {
+    background-color: rgba(10, 20, 50, 0.8);
+    padding: 20px;
+    border-radius: 15px;
+    max-width: 400px;
+    margin: 0 auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.emojiHeader {
+    color: #4a74a5;
+    font-size: 4rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* === RESULT STYLES === */
+.resultContainerFlex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
 .resultContainer {
     position: relative;
     max-width: 400px;
     margin: 0 auto;
 }
 
-.fifaCardImage {
+.fifaCardImage, .PessiCardImage {
+    background-color: transparent;
     width: 100%;
 }
 
-.score, .totalScore {
+.playerName, .playerNationality, .playerRole, .score, .totalScore {
     position: absolute;
-    color: white;
+    color: #402a18;
     font-weight: bold;
-}
-
-.totalScore {
-    bottom: 78%;
-    left: 28%;
-    transform: translateX(-50%);
-    font-size: 3.5rem;
-    color: #402a18;
-    font-weight: 400;
-}
-
-.score-0 {
-    position: absolute;
-    top: 64.8%;
-    left: 22%;
-}
-.score-1 {
-    position: absolute;
-    top: 72%;
-    left: 22%;
-}
-.score-2 {
-    position: absolute;
-    top: 79%;
-    left: 22%;
-}
-.score-3 {
-    position: absolute;
-    bottom: 27.1%;
-    right: 35%;
-}
-.score-4 {
-    position: absolute;
-    bottom: 20%;
-    right: 35%;
-}
-.score-5 {
-    position: absolute;
-    bottom: 13.2%;
-    right: 35%;
-}
-.score {
     font-size: xx-large;
-    color: #402a18;
-    font-weight: 600;
+    text-transform: uppercase;
 }
+
+/* === PLAYER CARD STYLES === */
+.playerName {
+    text-align: center;
+    top: 55%;
+    left: 22%;
+    width: 56%;
+}
+
+.playerNationality { top: 31%; left: 23%; }
+.playerRole { top: 21%; left: 23.5%; }
+.totalScore { bottom: 78%; left: 28%; transform: translateX(-50%); font-size: 3.5rem; font-weight: 400; }
+
+.score-0 { top: 65.8%; left: 22%; }
+.score-1 { top: 73%; left: 22%; }
+.score-2 { top: 80%; left: 22%; }
+.score-3 { bottom: 27.1%; right: 35%; }
+.score-4 { bottom: 20%; right: 35%; }
+.score-5 { bottom: 13.2%; right: 35%; }
 
 .PessiCardImage {
     position: absolute;
@@ -116,32 +145,3 @@
     top: 16%;
     left: 42%;
 }
-
-.playerName {
-    position: absolute;
-    top: 55%;
-    font-size: xx-large;
-    left: 41%;
-    font-weight: 600;
-    text-transform: uppercase;
-    color: #402a18;
-}
-.playerNationality {
-    position: absolute;
-    top: 29%;
-    left: 23%;
-    font-weight: 600;
-    font-size: xx-large;
-    color: #402a18;
-    text-transform: uppercase;
-}
-.playerRole {
-    position: absolute;
-    top: 21%;
-    left: 23.5%;
-    font-size: xx-large;
-    font-weight: 600;
-    color: #402a18;
-    text-transform: uppercase;
-}
-
