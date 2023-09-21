@@ -1,0 +1,8 @@
+.opponentProgress .progress-bar {
+    background-color: #007bff; /* Couleur de la barre */
+    transition: width 0.4s ease-in-out; /* Transition pour un changement doux */
+}
+
+.opponentProgress {
+    margin: 10px; /* Marges autour de la barre de progression */
+}
