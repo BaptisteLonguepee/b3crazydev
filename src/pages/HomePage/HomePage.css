@@ -1,3 +1,4 @@
+/* === GLOBAL STYLES === */
 
 .home-container {
     background-image: url('../../../public/fond.jpg');
@@ -9,7 +10,28 @@
     align-items: center;
     padding-top: 30px;
     margin-bottom: 60px;
+    perspective: 1px;
+    transform-style: preserve-3d;
+    height: 150vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
+
+.home-container::before {
+    content: "";
+    background-image: url('../../../public/fond.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    transform: translateZ(-1px) scale(2);
+}
+
+/* === BANNER STYLES === */
 
 .banner {
     text-align: center;
@@ -19,6 +41,7 @@
     position: relative;
     margin-bottom: 50px;
 }
+
 .banner::before {
     content: "";
     position: absolute;
@@ -46,11 +69,6 @@
     margin: 0 auto;
 }
 
-
-.fade-in-text {
-    opacity: 0; /* Initialisé à 0 pour l'effet de fondu */
-    animation: fadeInOpacity 2s forwards; /* Utilisez la même animation que celle que vous aviez */
-}
 .banner-text {
     position: absolute;
     top: 10%;
@@ -59,36 +77,17 @@
     color: darkseagreen;
     font-size: 60px;
     font-weight: bold;
-    padding: 20px 40px; /* Ajustement du padding */
-    border-radius: 25px; /* Bordures arrondies plus prononcées */
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4); /* Ombre du texte ajustée */
+    padding: 20px 40px;
+    border-radius: 25px;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
     z-index: 2;
 }
 
-
-
-/* Effet de survol pour le texte de la bannière */
 .banner-text:hover {
-    transform: translate(-50%, -50%) scale(1.05); /* Agrandir légèrement */
+    transform: translate(-50%, -50%) scale(1.05);
 }
 
-/* Animation de fondu et d'échelle pour le texte de la bannière */
-@keyframes bannerTextFadeScaleIn {
-    from {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(0.8);
-    }
-    to {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(0.9);
-    }
-}
-
-/* Application de l'animation au texte de la bannière lors du chargement de la page */
-.home-container.fade-in .banner-text {
-    animation: bannerTextFadeScaleIn 1s forwards;
-}
-
+/* === QUIZ BUTTON STYLES === */
 
 .quiz-button-container {
     display: flex;
@@ -99,25 +98,24 @@
 }
 
 .quiz-button {
-    font-size: 26px; /* Augmentation de la taille de la police */
-    padding: 20px 40px; /* Ajustement du padding pour un bouton plus grand */
-    border-radius: 50px; /* Bordures très arrondies pour un look moderne */
-    border: 2px solid #61dafb; /* Bordure pour définir le bouton */
+    font-size: 26px;
+    padding: 20px 40px;
+    border-radius: 50px;
+    border: 2px solid #61dafb;
     cursor: pointer;
-    background-color: #282c34; /* Couleur d'arrière-plan */
-    color: #61dafb; /* Couleur du texte */
-    transition: transform 0.3s, box-shadow 0.3s; /* Effets de transition pour le survol */
-    position: relative; /* Pour le z-index */
-    z-index: 2; /* Assure que le bouton est au-dessus des autres éléments */
-    overflow: hidden; /* Nécessaire pour certains effets de survol */
+    background-color: transparent;
+    color: #61dafb;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
 }
 
 .quiz-button:hover {
-    transform: scale(1.05); /* Effet de zoom lors du survol */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Ombre portée pour donner une sensation de "lévitation" */
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Ajout d'un effet de gradient subtil lors du survol */
 .quiz-button::before {
     content: "";
     position: absolute;
@@ -135,59 +133,8 @@
     transform: translateY(0);
 }
 
-.fade-in {
-    -webkit-animation-name: fadeInOpacity;
-    animation-name: fadeInOpacity;
-    -webkit-animation-iteration-count: 1;
-    animation-iteration-count: 1;
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
-    -webkit-animation-duration: 2s;
-    animation-duration: 2s;
-}
+/* === DESCRIPTION & CONTENT STYLES === */
 
-@-webkit-keyframes fadeInOpacity {
-    0% {
-        opacity: 0.2;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-@keyframes fadeInOpacity {
-    0% {
-        opacity: 0.2;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-/* Pour l'effet de parallaxe */
-.home-container {
-    perspective: 1px;
-    transform-style: preserve-3d;
-    height: 150vh; /* Ajustez en fonction de votre contenu */
-    overflow-y: scroll;
-    overflow-x: hidden;
-}
-
-/* Fond avec effet de parallaxe */
-.home-container::before {
-    content: "";
-    background-image: url('../../../public/fond.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: -1;
-    transform: translateZ(-1px) scale(2);
-}
-
-/* Description du quiz */
 .description {
     text-align: center;
     font-size: 20px;
@@ -200,46 +147,6 @@
     color: #61dafb;
 }
 
-.ronaldo-gif-container {
-    position: relative;
-    max-width: 400px;
-    margin: 30px 0;
-}
-
-.ronaldo-gif {
-    width: 100%;
-    display: block;
-    border-radius: 20px;
-    position: relative; /* Ajout de cette ligne */
-    z-index: 1; /* Ajout de cette ligne */
-}
-
-.ronaldo-speech-bubble {
-    position: absolute;
-    bottom: 98%; /* Changez 'top' par 'bottom' et ajustez la valeur en fonction de la position souhaitée */
-    left: 50%;
-    transform: translateX(-50%);
-    max-width: 250px;
-    background-color: white;
-    padding: 10px 20px;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    font-size: 16px;
-    text-align: center;
-    z-index: 2; /* Assure que le texte est au-dessus de l'image */
-}
-
-
-.ronaldo-speech-bubble::after {
-    content: "";
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-top: 15px solid white;
-}
 .content-wrapper {
     display: flex;
     justify-content: space-between;
@@ -254,22 +161,85 @@
     flex: 1;
     display: flex;
     align-items: center;
-    justify-content: flex-end; /* Placer le bouton vers le côté droit du conteneur gauche */
+    justify-content: flex-end;
 }
 
 .right-content {
     flex: 1;
     display: flex;
     align-items: center;
-    justify-content: flex-start; /* Placer le gif et la bulle de parole vers le côté gauche du conteneur droit */
+    justify-content: flex-start;
     position: relative;
 }
-/* Animation de rebond */
+
+/* === RONALDO GIF STYLES === */
+
+.ronaldo-gif-container {
+    position: relative;
+    max-width: 400px;
+    margin: 30px 0;
+}
+
+.ronaldo-gif {
+    width: 100%;
+    display: block;
+    border-radius: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.ronaldo-speech-bubble {
+    position: absolute;
+    bottom: 98%;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 250px;
+    background-color: white;
+    padding: 10px 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: 16px;
+    text-align: center;
+    z-index: 2;
+}
+
+.ronaldo-speech-bubble::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 15px solid white;
+}
+
+/* === ANIMATIONS === */
+
+.fade-in-text {
+    opacity: 0;
+    animation: fadeInOpacity 2s forwards;
+}
+
+@keyframes bannerTextFadeScaleIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(0.9);
+    }
+}
+
+.home-container.fade-in .banner-text {
+    animation: bannerTextFadeScaleIn 1s forwards;
+}
+
 @keyframes bounceOutLeft {
     20% {
         transform: translate3d(20px, 0, 0);
     }
-
     100% {
         opacity: 0;
         transform: translate3d(-2000px, 0, 0);
@@ -282,8 +252,20 @@
     animation-duration: 0.7s;
 }
 
+.fade-in {
+    animation-name: fadeInOpacity;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: 2s;
+}
 
-/* Styles pour le footer */
+@keyframes fadeInOpacity {
+    0% { opacity: 0.2; }
+    100% { opacity: 1; }
+}
+
+/* === FOOTER STYLES === */
+
 footer {
     margin-top: auto;
     padding: 20px;
