@@ -8,10 +8,20 @@ function App() {
     const balloonElement = useRef<HTMLDivElement>(null);
     const explosionSound = useRef<HTMLAudioElement>(null);
     const explosionBallon = useRef<HTMLAudioElement>(null);
+    const lastExplodedDate = localStorage.getItem('lastExplodedDate');
+    const minutesSinceLastExploded = lastExplodedDate ? (Date.now() - new Date(lastExplodedDate).getTime()) / (1000 * 60) : 0;
 
     const [ballonExploded, setBallonExploded] = useState(() => {
-        return localStorage.getItem('ballonExploded') === 'true';
+        if (localStorage.getItem('ballonExploded') === 'true') {
+            if (minutesSinceLastExploded > 1) {
+                // si plus de 1 minute s'est écoulée, considérez le ballon comme n'ayant pas explosé
+                return false;
+            }
+            return true;
+        }
+        return false;
     });
+
 
     const VOLUME_THRESHOLD = 50;
     const MAX_SIZE = 15;
@@ -70,9 +80,11 @@ function App() {
             setTimeout(() => {
                 setBallonExploded(true);
                 localStorage.setItem('ballonExploded', 'true');
+                localStorage.setItem('lastExplodedDate', new Date().toISOString()); // Enregistrez la date actuelle
             }, 500);
         }
     }
+
     return (
         <Router>
             {ballonExploded ? (

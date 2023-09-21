@@ -5,7 +5,6 @@ function Xbox() {
 
     useEffect(() => {
         let achievementSound = new Audio('https://dl.dropboxusercontent.com/s/8qvrpd69ua7wio8/XboxAchievement.mp3');
-        let achievementSoundRare = new Audio('https://dl.dropboxusercontent.com/s/po1udpov43am81i/XboxOneRareAchievement.mp3');
 
         const achievement = () => {
             let title = "Félicitations! Quizz fini !";
@@ -20,7 +19,7 @@ function Xbox() {
             achievementSound.play();
 
             let circleElem = document.querySelector('.circle');
-            let bannerElem = document.querySelector('.banner');
+            let bannerElem = document.querySelector('.bannerXbox');
             let achieveDispElem = document.querySelector('.achieve_disp');
 
             if (circleElem) circleElem.classList.add('circle_animate');
@@ -33,8 +32,6 @@ function Xbox() {
                 if (achieveDispElem) achieveDispElem.classList.remove('achieve_disp_animate');
             }, 12000);
         };
-
-        // Exécutez la fonction d'animation dès que le composant est monté
         achievement();
     }, []);
 

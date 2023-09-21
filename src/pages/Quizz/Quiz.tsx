@@ -66,6 +66,19 @@ function Quiz() {
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [scores, setScores] = useState<number[]>([]);
     const currentQuestion = QUIZ_DATA[currentQuestionIndex];
+    const [playerName, setPlayerName] = useState("");
+    const [nationality, setNationality] = useState("");
+    const [role, setRole] = useState("");
+    const [hasStarted, setHasStarted] = useState(false);
+
+    const startQuiz = () => {
+        if (playerName && nationality && role) {
+            setHasStarted(true);
+        } else {
+            alert("Veuillez remplir tous les champs avant de commencer le quiz.");
+        }
+    };
+
 
     const handleAnswerClick = (answerScore: number) => {
         setScores([...scores, answerScore]);
@@ -82,6 +95,10 @@ function Quiz() {
                 <Xbox/>
                 <div className="resultContainer">
                     <img src="/carte.png" alt="FIFA Card" className="fifaCardImage"/>
+                    <div className="playerName">{playerName}</div>
+                    <div className="playerNationality">{nationality}</div>
+                    <div className="playerRole">{role}</div>
+
                     <div>
                         <img src="/Pessi-lionel-messi-removebg-preview.png" alt="Pessi Card" className="PessiCardImage"/>
                     </div>
@@ -93,8 +110,30 @@ function Quiz() {
             </div>
         );
     }
+    if (!playerName) {
+        return (
+            <div className="playerInputContainer">
+                <input
+                    placeholder="Entrez votre nom"
+                    value={playerName}
+                    onChange={(e) => setPlayerName(e.target.value)}
+                />
+                <select value={nationality} onChange={(e) => setNationality(e.target.value)}>
+                    <option value="FR">🇫🇷 France</option>
+                    // Ajoutez d'autres pays comme vous le souhaitez ici
+                </select>
+                <select value={role} onChange={(e) => setRole(e.target.value)}>
+                    <option value="AT">AT</option>
+                    <option value="DD">DD</option>
+                    // Ajoutez d'autres rôles comme vous le souhaitez ici
+                </select>
+                <button onClick={startQuiz}>Commencer le quiz</button>
+            </div>
+        );
+    }
 
     return (
+
         <div className="quizContainerFlex">
             <div className="quizContainer">
                 <h2 className="emojiHeader">{EMOJIS[currentQuestionIndex]}</h2>

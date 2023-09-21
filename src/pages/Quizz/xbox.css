@@ -490,7 +490,7 @@
     position: relative;
 }
 
-.banner.banner-animate {
+.bannerXbox.banner-animate {
     animation: banner-animate;
     animation-duration: 10.5s;
 }
