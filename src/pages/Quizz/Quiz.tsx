@@ -66,9 +66,10 @@ function Quiz() {
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [scores, setScores] = useState<number[]>([]);
     const currentQuestion = QUIZ_DATA[currentQuestionIndex];
+
     const [playerName, setPlayerName] = useState("");
-    const [nationality, setNationality] = useState("");
-    const [role, setRole] = useState("");
+    const [nationality, setNationality] = useState("FR");
+    const [role, setRole] = useState("AT");
     const [hasStarted, setHasStarted] = useState(false);
 
     const startQuiz = () => {
@@ -78,7 +79,6 @@ function Quiz() {
             alert("Veuillez remplir tous les champs avant de commencer le quiz.");
         }
     };
-
 
     const handleAnswerClick = (answerScore: number) => {
         setScores([...scores, answerScore]);
@@ -110,7 +110,8 @@ function Quiz() {
             </div>
         );
     }
-    if (!playerName) {
+
+    if (!hasStarted) {
         return (
             <div className="playerInputContainer">
                 <input
