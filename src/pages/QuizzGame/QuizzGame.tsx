@@ -221,7 +221,7 @@ const QuizzGame = () => {
         });
 
         socket.on('announceWinner', (data) => {
-            setWinner(data.winner === socket.id ? 'Vous' : 'Adversaire');
+            setWinner(data.winner === socket.id ? 'gagné' : 'perdu');
         });
 
         socket.on('gameOver', (data) => {
@@ -253,9 +253,8 @@ const QuizzGame = () => {
         <div>
             {winner ? (
                 <>
-                    <h2>Le gagnant est {winner}</h2>
+                    <h2>Vous avez {winner}</h2>
                     <h3>Votre score: {scores.reduce((acc, val) => acc + val, 0)}</h3>
-                    <h3>Score de l'adversaire: {opponentTotalScore}</h3>
                 </>
             ) : null}
             {!started ? (

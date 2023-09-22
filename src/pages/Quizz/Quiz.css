@@ -52,6 +52,8 @@ button:hover {
 .answerButton {
     display: block;
     margin: 10px 0;
+    margin-left: auto;
+    margin-right: auto;
     padding: 10px 20px;
     background-color: #4a74a5;
     color: white;
