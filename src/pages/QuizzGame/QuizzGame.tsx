@@ -221,8 +221,15 @@ const QuizzGame = () => {
         });
 
         socket.on('announceWinner', (data) => {
-            setWinner(data.winner === socket.id ? 'gagné' : 'perdu');
+            if (data.winner === "draw") {
+                setWinner('égalité');
+            } else if (data.winner === socket.id) {
+                setWinner('gagné');
+            } else {
+                setWinner('perdu');
+            }
         });
+
 
         socket.on('gameOver', (data) => {
             console.log('Received gameOver with data:', data);

@@ -36,25 +36,29 @@ io.on('connection', (socket) => {
     if (!scores[roomID]) {
       scores[roomID] = {};
     }
-
     scores[roomID][socket.id] = data.score;
 
-    // Côté serveur
+    // Si les deux joueurs ont terminé, on calcule le gagnant.
     if (Object.keys(scores[roomID]).length === 2) {
       console.log("Both players finished, calculating winner...");
-      let winner = "";
+
       const entries = Object.entries(scores[roomID]);
+      let winner = "";
+
       if (entries[0][1] > entries[1][1]) {
         winner = entries[0][0];
-      } else {
+      } else if (entries[0][1] < entries[1][1]) {
         winner = entries[1][0];
+      } else {
+        // Si c'est une égalité
+        winner = "draw";
       }
+
       io.to(roomID).emit('announceWinner', { winner });
       io.to(roomID).emit('gameOver', {scores: scores[roomID]});
     }
-
-
   });
+
 
   socket.on('newTurn', (msg) => {
     socket.broadcast.emit('updateOpponentProgress', { score: msg.turn });
