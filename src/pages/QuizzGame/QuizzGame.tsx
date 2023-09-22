@@ -279,7 +279,9 @@ const QuizzGame = () => {
                             <div className="quizContainer">
                                 <h2 className="emojiHeader">{EMOJIS[currentQuestionIndex]}</h2>
                                 <h3>{currentQuestion.category}</h3>
+                                <div className="textCenter">
                                 <p>{currentQuestion.question}</p>
+                                </div>
                                 {currentQuestion.answers.map((answer: any, index: number) => (
                                     <button className="answerButton" key={index} onClick={() => handleAnswerClick(answer.score)}>
                                         {answer.text}
