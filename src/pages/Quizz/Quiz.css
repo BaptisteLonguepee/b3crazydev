@@ -1,0 +1,215 @@
+/* === GLOBAL STYLES === */
+body {
+    font-family: 'Arial', sans-serif;
+    background-image: url('../../../public/fond.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    color: #EDEDED;
+}
+
+/* === FORM STYLES === */
+.playerInputContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgba(10, 20, 50, 0.8);
+    gap: 20px;
+}
+
+input, select {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #EDEDED;
+    border: 1px solid #FFDDC1;
+    margin: 10px 0;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 300px;
+}
+
+.dark-text {
+    color: black;
+}
+
+/* === BUTTON STYLES === */
+button {
+    padding: 12px 25px;
+    background-color: #4a74a5;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #6589bf;
+}
+
+.answerButton {
+    display: block;
+    margin: 10px 0;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px 20px;
+    background-color: #4a74a5;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    transition: transform 0.1s, background-color 0.2s;
+}
+
+.answerButton:hover {
+    transform: scale(1.05);
+    background-color: #6589bf;
+}
+
+.answerButton:active {
+    transform: scale(0.95);
+}
+
+/* === QUIZ STYLES === */
+.quizContainerFlex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.quizContainer {
+    background-color: rgba(10, 20, 50, 0.8);
+    padding: 20px;
+    border-radius: 15px;
+    max-width: 400px;
+    margin: 0 auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.emojiHeader {
+    color: #4a74a5;
+    font-size: 4rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* === RESULT STYLES === */
+.resultContainerFlex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.resultContainer {
+    position: relative;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.fifaCardImage, .PessiCardImage {
+    background-color: transparent;
+    width: 100%;
+}
+
+.playerName, .playerNationality, .playerRole, .score, .totalScore {
+    position: absolute;
+    color: #402a18;
+    font-weight: bold;
+    font-size: xx-large;
+    text-transform: uppercase;
+}
+
+/* === PLAYER CARD STYLES === */
+.playerName {
+    text-align: center;
+    top: 55%;
+    left: 22%;
+    width: 56%;
+}
+
+.playerNationality { top: 31%; left: 23%; }
+.playerRole { top: 21%; left: 23.5%; }
+.totalScore { bottom: 78%; left: 28%; transform: translateX(-50%); font-size: 3.5rem; font-weight: 400; }
+
+.score-0 { top: 65.8%; left: 22%; }
+.score-1 { top: 73%; left: 22%; }
+.score-2 { top: 80%; left: 22%; }
+.score-3 { bottom: 27.1%; right: 35%; }
+.score-4 { bottom: 20%; right: 35%; }
+.score-5 { bottom: 13.2%; right: 35%; }
+
+.PessiCardImage {
+    position: absolute;
+    width: 50%;
+    top: 16%;
+    left: 42%;
+}
+
+.textCenter {
+    text-align: center;
+}
+.chatContainer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-top: 2px solid #ccc;
+    padding: 10px;
+    background-color: #ffffff; /* Fond blanc */
+    display: flex;
+    align-items: center;
+}
+
+.chatMessages {
+    flex: 3;
+    max-height: 150px;
+    overflow-y: auto;
+    margin-right: 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: #000000; /* Texte noir */
+}
+
+input[type="text"] {
+    flex: 2;
+    padding: 5px;
+    margin-right: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: #000000; /* Texte noir */
+}
+
+.roomIDInput {
+    color: #EDEDED; /* Texte blanc */
+}
+
+
+button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="text"] {
+    flex: 2;
+    padding: 5px;
+    margin-right: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

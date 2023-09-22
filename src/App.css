@@ -1,3 +1,12 @@
+/* Réinitialise les marges et les rembourrages pour le corps et l'élément html */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+/* Vos autres styles restent inchangés */
 .App {
   text-align: center;
 }
@@ -35,4 +44,96 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* Mettez background-size à 'cover' pour que l'image prenne toute la page */
+.container {
+  background-image: url('../public/terrain.png');
+  background-size: cover; /* De contain à cover */
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+}
+
+.balloon {
+  background: url(http://upload.wikimedia.org/wikipedia/en/e/ec/Soccer_ball.svg);
+  background-size: 100px 100px;
+  height: 100px;
+  width: 100px;
+  position: relative;
+  left: 10px;
+  bottom: 2px;
+}
+
+.instruction {
+  position: absolute;
+  top: 10%;
+  left: 52%;
+  transform: translateX(-50%);
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  animation: breathe 1.5s infinite alternate;
+}
+
+@keyframes breathe {
+  from {
+    transform: translateX(-50%) scale(1);
+  }
+  to {
+    transform: translateX(-50%) scale(1.1);
+  }
+}
+
+
+/* Animation d'explosion */
+@keyframes explodeAnimation {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.explode {
+  animation: explodeAnimation 0.5s forwards;
+}
+
+.styled-button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  padding: 10px 20px;
+  font-size: 1em;
+  border: none;
+  border-radius: 30px; /* Pour donner un aspect arrondi */
+  background-color: #3a3a3a; /* Une couleur sombre pour contraster avec le vert du terrain */
+  color: #fff; /* Texte blanc pour le contraste */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Une petite ombre pour donner de la profondeur */
+  transition: transform 0.2s, box-shadow 0.2s; /* Transition pour l'effet de survol */
+  cursor: pointer; /* Change le curseur en main lors du survol */
+}
+
+.styled-button:hover {
+  transform: translateY(-3px); /* Déplace légèrement le bouton vers le haut lors du survol */
+  box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2); /* Une ombre un peu plus grande lors du survol */
+}
+
+.styled-button:active {
+  transform: translateY(1px); /* Déplace légèrement le bouton vers le bas lors du clic */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Une ombre plus petite lors du clic */
 }
