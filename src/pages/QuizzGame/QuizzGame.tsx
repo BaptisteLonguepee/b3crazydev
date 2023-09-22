@@ -209,6 +209,8 @@ const QuizzGame = () => {
     const currentQuestion = QUIZ_DATA[currentQuestionIndex];
     const [opponentTotalScore, setOpponentTotalScore] = useState<number>(0);
     const [otherPlayerSocketId, setOtherPlayerSocketId] = useState<string>("");
+    const [chatMessages, setChatMessages] = useState<string[]>([]);
+    const [currentMessage, setCurrentMessage] = useState<string>("");
 
     useEffect(() => {
         socket.on('startQuiz', (data) => {
@@ -235,10 +237,28 @@ const QuizzGame = () => {
             console.log('Received gameOver with data:', data);
             setOpponentTotalScore(data.scores[otherPlayerSocketId]);
         });
-    }, []);
+
+        socket.on('receiveChatMessage', (data) => {
+            setChatMessages((prevMessages) => [...prevMessages, `Adversaire: ${data.message}`]);
+        });
+        return () => {
+            socket.off('startQuiz');
+            socket.off('updateOpponentProgress');
+            socket.off('announceWinner');
+            socket.off('gameOver');
+            socket.off('receiveChatMessage');
+        };
+    }, [otherPlayerSocketId]);
 
     const createOrJoinRoom = () => {
         socket.emit('createOrJoinRoom', roomID);
+    };
+    const sendMessage = () => {
+        if (currentMessage.trim() !== "") {
+            socket.emit('chatMessage', { roomID, message: currentMessage });
+            setChatMessages((prevMessages) => [...prevMessages, `Vous: ${currentMessage}`]);
+            setCurrentMessage("");
+        }
     };
 
     const handleAnswerClick = (answerScore: number) => {
@@ -262,12 +282,26 @@ const QuizzGame = () => {
                 <>
                     <h2>Vous avez {winner}</h2>
                     <h3>Votre score: {scores.reduce((acc, val) => acc + val, 0)}</h3>
+                    <div className="chatContainer">
+                        <div className="chatMessages">
+                            {chatMessages.map((msg, index) => (
+                                <p key={index}>{msg}</p>
+                            ))}
+                        </div>
+                        <input
+                            type="text"
+                            placeholder="Écrivez un message..."
+                            value={currentMessage}
+                            onChange={e => setCurrentMessage(e.target.value)}
+                        />
+                        <button onClick={sendMessage}>Envoyer</button>
+                    </div>
                 </>
             ) : null}
             {!started ? (
                 <div className="quizzGameContainer">
                     <div className="createOrJoinRoom">
-                        <input type="text" value={roomID} onChange={e => setRoomID(e.target.value)} placeholder="Enter room ID" />
+                        <input value={roomID} onChange={e => setRoomID(e.target.value)} placeholder="Enter room ID" className="roomIDInput" />
                         <button onClick={createOrJoinRoom}>Create/Join Room</button>
                     </div>
                 </div>
