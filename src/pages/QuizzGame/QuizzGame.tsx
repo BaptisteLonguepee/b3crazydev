@@ -265,13 +265,14 @@ const QuizzGame = () => {
                 </>
             ) : null}
             {!started ? (
-                <div>
-                    <input type="text" value={roomID} onChange={e => setRoomID(e.target.value)} placeholder="Enter room ID" />
-                    <button onClick={createOrJoinRoom}>Create/Join Room</button>
+                <div className="quizzGameContainer">
+                    <div className="createOrJoinRoom">
+                        <input type="text" value={roomID} onChange={e => setRoomID(e.target.value)} placeholder="Enter room ID" />
+                        <button onClick={createOrJoinRoom}>Create/Join Room</button>
+                    </div>
                 </div>
             ) : (
                 <>
-
                     {currentQuestion && (
                         <>
                             <div className="opponentProgress">
