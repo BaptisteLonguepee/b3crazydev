@@ -29,6 +29,12 @@ io.on('connection', (socket) => {
 
   });
 
+  socket.on('chatMessage', (data) => {
+    const { roomID, message } = data;
+    socket.to(roomID).emit('receiveChatMessage', { message });
+  });
+
+
   socket.on('gameOver', (data) => {
     const roomID = Object.keys(rooms).find((key) => rooms[key].includes(socket.id));
     if (!roomID) return;
