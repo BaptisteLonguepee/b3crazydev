@@ -14,7 +14,7 @@ Une application de quiz interactif en temps réel utilisant React et Socket.io p
 
 - Node.js et NPM installés sur votre machine.
 
-### Installation :
+### Installation React:
 
 1. Clonez le dépôt :
     ```
@@ -29,14 +29,30 @@ Une application de quiz interactif en temps réel utilisant React et Socket.io p
     npm install
     ```
 
-### Lancer l'application :
-
-1. Lancez le serveur :
+3. Lancez le serveur :
     ```
     npm run start
     ```
 
-2. Ouvrez votre navigateur et accédez à :
+4. Ouvrez votre navigateur et accédez à :
     ```
-    http://localhost:3000
+    http://localhost:3001
     ```
+
+### Installation Node:
+
+2. Naviguez vers le répertoire du projet :
+    ```
+    cd chemin-vers-votre-projet/node
+    ```
+3. Installez les dépendances :
+    ```
+    npm install
+    ```
+
+3. Lancez le serveur :
+    ```
+    npm run start #Localhost:3000
+    ```
+
+Ce projet est sous licence MIT - voir le fichier [LICENSE.md](LIEN-VERS-LICENCE.md) pour plus de détails.
