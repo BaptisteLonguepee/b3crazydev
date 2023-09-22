@@ -55,4 +55,4 @@ Une application de quiz interactif en temps réel utilisant React et Socket.io p
     npm run start #Localhost:3000
     ```
 
-Ce projet est sous licence MIT - voir le fichier [LICENSE.md](https://github.com/BaptisteLonguepee/b3crazydev/dev/LICENSE.md) pour plus de détails.
+Ce projet est sous licence MIT - voir le fichier [LICENSE.md](https://github.com/BaptisteLonguepee/b3crazydev/LICENSE.md) pour plus de détails.
