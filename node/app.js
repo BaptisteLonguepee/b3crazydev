@@ -31,7 +31,7 @@ io.on('connection', (socket) => {
 
   socket.on('chatMessage', (data) => {
     const { roomID, message } = data;
-    socket.to(roomID).emit('receiveChatMessage', { message });
+    socket.to(roomID).emit('receiveChatMessage', { message: `${message}` });
   });
 
 

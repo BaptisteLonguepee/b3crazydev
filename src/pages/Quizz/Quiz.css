@@ -183,6 +183,11 @@ input[type="text"] {
     color: #000000; /* Texte noir */
 }
 
+.roomIDInput {
+    color: #EDEDED; /* Texte blanc */
+}
+
+
 button {
     padding: 5px 10px;
     background-color: #007bff;
