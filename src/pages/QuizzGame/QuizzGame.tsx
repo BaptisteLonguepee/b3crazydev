@@ -186,6 +186,15 @@ const QUIZ_DATA = [
             { text: "b) Nike", score: 1 },
             { text: "c) Puma", score: 0 }
         ]
+    },
+    {
+        category: "",
+        question: "Bien joué, vous avez terminé le quizz !",
+        answers: [
+            { text: "Voir les resultats", score: 0 },
+
+        ]
+
     }
 ];
 
@@ -242,6 +251,13 @@ const QuizzGame = () => {
 
     return (
         <div>
+            {winner ? (
+                <>
+                    <h2>Le gagnant est {winner}</h2>
+                    <h3>Votre score: {scores.reduce((acc, val) => acc + val, 0)}</h3>
+                    <h3>Score de l'adversaire: {opponentTotalScore}</h3>
+                </>
+            ) : null}
             {!started ? (
                 <div>
                     <input type="text" value={roomID} onChange={e => setRoomID(e.target.value)} placeholder="Enter room ID" />
@@ -249,13 +265,6 @@ const QuizzGame = () => {
                 </div>
             ) : (
                 <>
-                    {winner ? (
-                        <>
-                            <h2>Le gagnant est {winner}</h2>
-                            <h3>Votre score: {scores.reduce((acc, val) => acc + val, 0)}</h3>
-                            <h3>Score de l'adversaire: {opponentTotalScore}</h3>
-                        </>
-                    ) : null}
 
                     {currentQuestion && (
                         <>
