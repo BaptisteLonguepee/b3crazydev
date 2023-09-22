@@ -147,3 +147,7 @@ button:hover {
     top: 16%;
     left: 42%;
 }
+
+.textCenter {
+    text-align: center;
+}
