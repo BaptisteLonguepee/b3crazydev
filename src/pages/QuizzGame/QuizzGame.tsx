@@ -74,6 +74,8 @@ const QuizzGame = () => {
     const currentQuestion = QUIZ_DATA[currentQuestionIndex];
     const [opponentTotalScore, setOpponentTotalScore] = useState<number>(0);
     const [otherPlayerSocketId, setOtherPlayerSocketId] = useState<string>("");
+    const [quizFinished, setQuizFinished] = useState(false);
+    const [adversaryScore, setAdversaryScore] = useState<number>(0);
 
     const createOrJoinRoom = () => {
         socket.emit('createOrJoinRoom', roomID);
@@ -85,19 +87,33 @@ const QuizzGame = () => {
             setOtherPlayerSocketId(data.otherPlayerSocketId);
         });
 
+
         socket.on('updateOpponentProgress', (progress) => {
-            setOpponentProgress(progress);
+            setOpponentProgress(Math.round(progress));
         });
+
 
         socket.on('announceWinner', (data) => {
             setWinner(data.winner === socket.id ? 'Vous' : 'Adversaire');
         });
 
         socket.on('gameOver', (data) => {
-            console.log('Received gameOver with data:', data);
-            setOpponentTotalScore(data.scores[otherPlayerSocketId]);
+            setOpponentTotalScore(data.score);
         });
-    }, []);
+
+        socket.on('finalScores', (scores) => {
+            console.log(`Received finalScores:`, scores);
+            console.log(`Other player's socket ID: ${otherPlayerSocketId}`);
+            setOpponentTotalScore(scores[otherPlayerSocketId]);
+        });
+
+
+        return () => {
+
+            socket.off('finalScores');
+        };
+    }, [otherPlayerSocketId]);
+
 
     const handleAnswerClick = (answerScore: number) => {
         setScores((prevScores) => [...prevScores, answerScore]);
@@ -107,12 +123,14 @@ const QuizzGame = () => {
             const totalScore = scores.reduce((acc, val) => acc + val, 0) + answerScore;
             console.log('Sending final score:', totalScore);
             socket.emit('gameOver', { score: totalScore });
-            return;
+            setQuizFinished(true);
+        } else {
+            setCurrentQuestionIndex(nextQuestionIndex);
+            const progress = Math.round((nextQuestionIndex / QUIZ_DATA.length) * 100);
+            socket.emit('answerQuestion', { roomID, currentQuestionIndex: nextQuestionIndex, quizLength: QUIZ_DATA.length });
         }
-
-        setCurrentQuestionIndex(nextQuestionIndex);
-        socket.emit('answerQuestion', { roomID, currentQuestionIndex, quizLength: QUIZ_DATA.length });
     };
+
 
     return (
         <div>
@@ -123,15 +141,12 @@ const QuizzGame = () => {
                 </div>
             ) : (
                 <>
-                    {winner ? (
-                        <>
-                            <h2>Le gagnant est {winner}</h2>
-                            <h3>Votre score: {scores.reduce((acc, val) => acc + val, 0)}</h3>
+                    {quizFinished ? (
+                        <div>
+                            <h2>Votre score: {scores.reduce((acc, val) => acc + val, 0)}</h2>
                             <h3>Score de l'adversaire: {opponentTotalScore}</h3>
-                        </>
-                    ) : null}
-
-                    {currentQuestion && (
+                        </div>
+                    ) : (
                         <>
                             <div className="opponentProgress">
                                 <ProgressBar now={opponentProgress} label={`${opponentProgress}%`} striped variant="info" animated/>
@@ -152,7 +167,6 @@ const QuizzGame = () => {
             )}
         </div>
     );
-
 };
 
 export default QuizzGame;
